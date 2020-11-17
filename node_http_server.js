@@ -30,7 +30,10 @@ class NodeHttpServer {
     this.mediaroot = config.http.mediaroot || HTTP_MEDIAROOT;
     this.config = config;
 
-    let app = Express();
+    let app = this.config.expressApp
+    if (!this.config.expressApp) {
+      app = Express();
+    }
     app.use(bodyParser.json());
 
     app.use(bodyParser.urlencoded({ extended: true }));
